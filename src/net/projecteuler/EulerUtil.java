@@ -9,10 +9,19 @@ import java.util.Objects;
 public class EulerUtil {
 
     public static boolean isPrime(long number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("Negative number");
+        }
+        if (number == 1 || number == 0) {
+            return false;
+        }
+        if (number == 2 || number == 3 || number == 5) {
+            return true;
+        }
         if (((number % 3 == 0) || (number % 2 == 0) || (number % 5 == 0))) {
             return false;
         }
-        for (int i = 7; i < Math.sqrt(number); i++) {
+        for (int i = 3; i <= Math.sqrt(number); i += 2) {
             if (number % i == 0) {
                 return false;
             }
